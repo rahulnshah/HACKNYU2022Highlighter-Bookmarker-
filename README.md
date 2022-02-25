@@ -21,7 +21,7 @@
         - Screenshot #1 description explaining what you're trying to show
 ### End Line item / Feature Template
 --> 
-### Proposal Checklist and Evidence
+### Project Checklist and Evidence
 
 - Milestone 1
   - [ ] \(mm/dd/yyyy) 
