@@ -24,7 +24,7 @@
 ### Proposal Checklist and Evidence
 
 - Milestone 1
-  - [x] \(mm/dd/yyyy) 
+  - [ ] \(mm/dd/yyyy) 
     -  List of Evidence of Feature Completion
       - Status: (Completed, Partially working, Incomplete, Pending)
       - Direct Link: 
@@ -32,7 +32,7 @@
         
       - Screenshots
 
-  - [x] \(mm/dd/yyyy) 
+  - [ ] \(mm/dd/yyyy) 
     -  List of Evidence of Feature Completion
       - Status: (Completed, Partially working, Incomplete, Pending)
       - Direct Link: 
@@ -40,7 +40,7 @@
 
       - Screenshots
 
-  - [x] \(mm/dd/yyyy)
+  - [ ] \(mm/dd/yyyy)
     -  List of Evidence of Feature Completion
       - Status: (Completed, Partially working, Incomplete, Pending)
       - Direct Link: 
@@ -48,7 +48,7 @@
 
       - Screenshots
 
-  - [x] \(mm/dd/yyyy) 
+  - [ ] \(mm/dd/yyyy) 
     -  List of Evidence of Feature Completion
       - Status: (Completed, Partially working, Incomplete, Pending)
       - Direct Link: 
