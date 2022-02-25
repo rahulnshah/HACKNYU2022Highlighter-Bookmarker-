@@ -24,7 +24,7 @@
 ### Project Checklist and Evidence
 
 - Milestone 1
-  - [ ] \(mm/dd/yyyy) 
+  - [ ] \(mm/dd/yyyy) Design a landing page with Figma 
     -  List of Evidence of Feature Completion
         - Status: (Completed, Partially working, Incomplete, Pending)
         - Direct Link: 
@@ -32,7 +32,7 @@
             
         - Screenshots
 
-  - [ ] \(mm/dd/yyyy) 
+  - [ ] \(mm/dd/yyyy) Add a download button to the landing page
     -  List of Evidence of Feature Completion
         - Status: (Completed, Partially working, Incomplete, Pending)
         - Direct Link: 
@@ -40,7 +40,7 @@
 
         - Screenshots
 
-  - [ ] \(mm/dd/yyyy)
+  - [ ] \(mm/dd/yyyy) Work on writing code to select text on a webpage and highlight it. 
     -  List of Evidence of Feature Completion
         - Status: (Completed, Partially working, Incomplete, Pending)
         - Direct Link: 
@@ -48,7 +48,7 @@
 
         - Screenshots
 
-  - [ ] \(mm/dd/yyyy) 
+  - [ ] \(mm/dd/yyyy) Save highlights, link them to their respective webpage, and save all of these highlights somewhere the user can find them. 
     -  List of Evidence of Feature Completion
         - Status: (Completed, Partially working, Incomplete, Pending)
         - Direct Link: 
