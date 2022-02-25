@@ -26,32 +26,32 @@
 - Milestone 1
   - [ ] \(mm/dd/yyyy) 
     -  List of Evidence of Feature Completion
-      - Status: (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: 
-      - Pull Requests
-        
-      - Screenshots
+        - Status: (Completed, Partially working, Incomplete, Pending)
+        - Direct Link: 
+        - Pull Requests
+            
+        - Screenshots
 
   - [ ] \(mm/dd/yyyy) 
     -  List of Evidence of Feature Completion
-      - Status: (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: 
-      - Pull Requests
+        - Status: (Completed, Partially working, Incomplete, Pending)
+        - Direct Link: 
+        - Pull Requests
 
-      - Screenshots
+        - Screenshots
 
   - [ ] \(mm/dd/yyyy)
     -  List of Evidence of Feature Completion
-      - Status: (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: 
-      - Pull Requests
+        - Status: (Completed, Partially working, Incomplete, Pending)
+        - Direct Link: 
+        - Pull Requests
 
-      - Screenshots
+        - Screenshots
 
   - [ ] \(mm/dd/yyyy) 
     -  List of Evidence of Feature Completion
-      - Status: (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: 
-      - Pull Requests
+        - Status: (Completed, Partially working, Incomplete, Pending)
+        - Direct Link: 
+        - Pull Requests
 
-      - Screenshots
+        - Screenshots
