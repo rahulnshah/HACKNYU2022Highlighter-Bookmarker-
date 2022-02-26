@@ -55,7 +55,7 @@
 
         Image showing highlight feature working as intended
 
-        ![2022-02-26 (6)](https://user-images.githubusercontent.com/84089410/155856040-bcfea355-ea84-44cc-a897-25af60b097fd.png)
+        ![2022-02-26 (6)](https://user-images.githubusercontent.com/84089410/155856123-30100da6-2fd8-4ff8-acc2-f72c20d222db.png)
 
         Images showing Chrome Extention has been created with icon image
 
