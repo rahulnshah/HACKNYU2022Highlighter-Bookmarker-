@@ -8,14 +8,24 @@
     <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
 </head>
 <body>
-    <p>It works!</p>
-    <p>For testing purposes. Return value
-        A Selection object.
-        
-        When cast to string, either by appending an empty string ("") or using Selection.toString(), this object returns the text selected.
-        
-        When called on an that is not displayed (eg. where display: none is set) Firefox will return null, whereas other browsers will return a Selection object with Selection.type set to None.</p>
+    <label for="textboxid">Enter Text: </label><br><br>
+    <input type="text" id="textboxid" name="textboxid"><br><br>
+    <button id="myBtn">Start Highlighting</button>
+    <p id="demo"></p>
+    <script>
+        const element = document.getElementById("myBtn");
+        element.addEventListener("click", myFunction);
+        function myFunction() {
+            const inputtx = document.getElementById("textboxid");
+            if(inputtx.value.length == 0)
+            {
+                alert("Input Box is empty");
+            }
+            else{
+                document.getElementById("demo").innerHTML = inputtx.value;
+            }
+        }
+    </script>
     <script src="scripts/aScript.js"></script>
-
 </body>
 </html>

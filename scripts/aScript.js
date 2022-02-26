@@ -8,4 +8,4 @@ function myFunction_2()
       console.log(selObj.toString());
     }
 }
-document.body.addEventListener("mouseup", myFunction_2);
+document.getElementById("demo").addEventListener("mouseup", myFunction_2);
