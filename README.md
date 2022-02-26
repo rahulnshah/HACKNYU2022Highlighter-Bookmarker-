@@ -74,5 +74,5 @@
         - Pull Requests
         
         Image showing bookmark feature
-        
-        -![image](https://user-images.githubusercontent.com/84089410155861144-4e219e63-ba21-411c-9525-e619801068f6.png    
+
+        ![image](https://user-images.githubusercontent.com/84089410155861144-4e219e63-ba21-411c-9525-e619801068f6.png    
