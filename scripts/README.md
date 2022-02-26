@@ -30,6 +30,7 @@
         - Direct Link: 
         - Pull Requests
             
+
         - ![2022-02-26 (3)](https://user-images.githubusercontent.com/84089410/155854985-33150529-b9a0-4f56-8cb7-a2a588b2edbc.png)
         
 
@@ -39,6 +40,7 @@
         - Status: (Completed, Partially working, Incomplete, Pending)
         - Direct Link: 
         - Pull Requests
+
 
         - ![2022-02-26 (4)](https://user-images.githubusercontent.com/84089410/155855144-16bf23f0-0a3e-46da-9fa3-270ed557d95f.png)
 
@@ -52,12 +54,17 @@
         - Screenshots
 
         Image showing highlight feature working as intended
+
         ![image](https://user-images.githubusercontent.com/84089410/155855190-87bc3a8e-2145-4465-b80b-e06a3f50f8a8.png)
 
         Images showing Chrome Extention has been created with icon image
+
+
         ![2022-02-26 (5)](https://user-images.githubusercontent.com/84089410/155855264-4955ef4f-4ac4-48a0-8db6-0d91ee561638.png)
 
         Second image showing chrome extention was created through a json file with a icon image
+
+        
         ![2022-02-26 (2)](https://user-images.githubusercontent.com/84089410/155855302-9ea1ba78-17d0-44af-9522-8094fc8fd77e.png)
         
   - [ ] \(mm/dd/yyyy) Save highlights, link them to their respective webpage, and save all of these highlights somewhere the user can find them. 
