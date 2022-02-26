@@ -10,6 +10,9 @@ function myFunction() {
         document.getElementById("demo").innerHTML = inputtx.value;
     }
 }
+// function onCreated(node) {
+//   console.log(node);
+// }
 function showPopup(){      
   let flash = document.getElementById("myDiv");
 //let flashDiv = document.createElement("div");
@@ -26,12 +29,17 @@ function showPopup(){
   //save button feature 
   saveButton.addEventListener("click", function(){
     //if url is not prvided, 
-      var urlText = document.getElementById("urlbox");
-      if(urlText.value.length > 0)
+      let urlStr = document.getElementById("urlbox");
+      if(urlStr.value.length > 0)
       {
         //create a bookmark, set the title as the highlighted text, and the url properties in a javascript object,
         //using the bookmarks api
-
+        let i = this.previousSibling.innerText.indexOf('\n') + 1;
+        let highlightedText = this.previousSibling.innerText.substring(i);
+        console.log("hihlight", highlightedText);
+        console.log("url", urlStr.value);
+        //assumng highlighted text is < 60 chars getting error here
+        
       }
       else{
         alert("provide url");
