@@ -1,3 +1,15 @@
+const element = document.getElementById("myBtn");
+element.addEventListener("click", myFunction);
+function myFunction() {
+    const inputtx = document.getElementById("textboxid");
+    if(inputtx.value.length == 0)
+    {
+        alert("Input Box is empty");
+    }
+    else{
+        document.getElementById("demo").innerHTML = inputtx.value;
+    }
+}
 function showPopup(){      
   let flash = document.getElementById("myDiv");
 //let flashDiv = document.createElement("div");
@@ -19,7 +31,7 @@ function showPopup(){
       {
         //create a bookmark, set the title as the highlighted text, and the url properties in a javascript object,
         //using the bookmarks api
-        
+
       }
       else{
         alert("provide url");

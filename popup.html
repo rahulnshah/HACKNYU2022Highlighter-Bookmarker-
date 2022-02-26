@@ -16,20 +16,6 @@
     <input type="url" id="urlbox" name="urlbox"><br><br>
     <button id="myBtn">Start Highlighting</button>
     <p id="demo"></p>
-    <script>
-        const element = document.getElementById("myBtn");
-        element.addEventListener("click", myFunction);
-        function myFunction() {
-            const inputtx = document.getElementById("textboxid");
-            if(inputtx.value.length == 0)
-            {
-                alert("Input Box is empty");
-            }
-            else{
-                document.getElementById("demo").innerHTML = inputtx.value;
-            }
-        }
-    </script>
     <script src="scripts/aScript.js"></script>
 </body>
 </html>
