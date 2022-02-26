@@ -36,10 +36,15 @@ function showPopup(){
         //using the bookmarks api
         let i = this.previousSibling.innerText.indexOf('\n') + 1;
         let highlightedText = this.previousSibling.innerText.substring(i);
-        console.log("hihlight", highlightedText);
-        console.log("url", urlStr.value);
         //assumng highlighted text is < 60 chars getting error here
-        
+        let anchTag = document.createElement("a");
+        anchTag.innerHTML = highlightedText;
+        anchTag.href = urlStr.value;
+        document.getElementById("highlights").appendChild(anchTag);
+        let linBreak = document.createElement("br");
+        document.getElementById("highlights").appendChild(linBreak);
+        this.parentNode.parentNode.removeChild(this.parentNode);
+        console.log("saved!");
       }
       else{
         alert("provide url");

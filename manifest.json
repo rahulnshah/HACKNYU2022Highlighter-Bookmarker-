@@ -7,9 +7,6 @@
           "default_popup": "popup.html", 
           "default_icon": "images/HackathonLogoV2.png" 
         },
-        "permissions": [
-          "bookmarks"
-        ],
         "icons": {
           "16": "images/HackathonLogoV2.png",
           "48": "images/HackathonLogoV2.png",
