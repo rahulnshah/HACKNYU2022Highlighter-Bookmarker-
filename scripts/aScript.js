@@ -1,4 +1,3 @@
-
 function myFunction_2()
 {
     //change the back ground color of the selected text 
