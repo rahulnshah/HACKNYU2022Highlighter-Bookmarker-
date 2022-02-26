@@ -4,6 +4,7 @@
 ## Project Board Link: 
 ## Project Demo: 
 ## Website Link: (heroku or free domain)
+ https://www.figma.com/proto/9oQ9eYhfPh9vQ3LWb2eWXs/highligh.it?page-id=0%3A1&node-id=9%3A52&viewport=241%2C48%2C1.38&scaling=scale-down&starting-point-node-id=9%3A52
 ## Team: Rahul Shah, Alexander Fischer, Laura Lourenco, Chelsea DeCambre
 
 <!--
