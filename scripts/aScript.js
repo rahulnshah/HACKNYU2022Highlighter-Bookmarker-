@@ -10,6 +10,25 @@ function showPopup(){
   let saveButton = document.createElement("button");
   saveButton.innerHTML = "Save";
   saveButton.setAttribute('id','saveBtn');
+
+  //save button feature 
+  saveButton.addEventListener("click", function(){
+    //if url is not prvided, 
+      var urlText = document.getElementById("urlbox");
+      if(urlText.value.length > 0)
+      {
+        //create a bookmark, set the title as the highlighted text, and the url properties in a javascript object,
+        //using the bookmarks api
+        
+      }
+      else{
+        alert("provide url");
+      }
+  });
+
+
+
+
   let noButton = document.createElement("button");
   noButton.setAttribute('id','noBtn');
   noButton.addEventListener("click", function(){
