@@ -1,6 +1,6 @@
 {
         "name": "Highlight it!",
-        "description": "Alows Students to highlight and save their page!",
+        "description": "Allows students to highlight and link their page to it!",
         "manifest_version": 2,
         "version": "1.0",
         "browser_action": {
