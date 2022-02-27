@@ -1,7 +1,7 @@
 # Project Name: Bookmarker & Highlighter Chrome Extension 
 ## Project Summary: Education Track - a free chrome extension that allows students to highlight on any web page and when something is highlighted on a page, the extension should automatically bookmark it somewhere for that student's reference. 
 ## Github Link: https://github.com/rahulnshah/HACKNYU2022Highlighter-Bookmarker-/tree/main
-## Project Demo: 
+## Project Demo: https://www.youtube.com/watch?v=8BG7yfL8fzs
 ## Website Link: https://loving-heisenberg-616f8e.netlify.app/#
 ## Team: Rahul Shah, Alexander Fischer, Laura Lourenco, Chelsea DeCambre
 
