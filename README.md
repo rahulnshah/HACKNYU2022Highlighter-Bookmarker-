@@ -1,10 +1,8 @@
 # Project Name: Bookmarker & Highlighter Chrome Extension 
 ## Project Summary: Education Track - a free chrome extension that allows students to highlight on any web page and when something is highlighted on a page, the extension should automatically bookmark it somewhere for that student's reference. 
 ## Github Link: https://github.com/rahulnshah/HACKNYU2022Highlighter-Bookmarker-/tree/main
-## Project Board Link: 
 ## Project Demo: 
-## Website Link: (heroku or free domain)
- https://www.figma.com/proto/9oQ9eYhfPh9vQ3LWb2eWXs/highligh.it?page-id=0%3A1&node-id=9%3A52&viewport=241%2C48%2C1.38&scaling=scale-down&starting-point-node-id=9%3A52
+## Website Link: https://loving-heisenberg-616f8e.netlify.app/#
 ## Team: Rahul Shah, Alexander Fischer, Laura Lourenco, Chelsea DeCambre
 
 <!--
@@ -23,57 +21,31 @@
 ### End Line item / Feature Template
 --> 
 ### Project Checklist and Evidence
-
-- Milestone 1
-  - [ ] \(mm/dd/yyyy) Design a landing page with Figma 
+  - [x] \(mm/dd/yyyy) Design a landing page with Figma with a Download button.
     -  List of Evidence of Feature Completion
-        - Status: (Completed, Partially working, Incomplete, Pending)
-        - Direct Link: 
-        - Pull Requests
-            
-
-        - ![2022-02-26 (3)](https://user-images.githubusercontent.com/84089410/155854985-33150529-b9a0-4f56-8cb7-a2a588b2edbc.png)
-        
-
-
-  - [ ] \(mm/dd/yyyy) Add a download button to the landing page
-    -  List of Evidence of Feature Completion
-        - Status: (Completed, Partially working, Incomplete, Pending)
-        - Direct Link: 
-        - Pull Requests
-
-
-        - ![2022-02-26 (4)](https://user-images.githubusercontent.com/84089410/155855144-16bf23f0-0a3e-46da-9fa3-270ed557d95f.png)
-
-
-  - [ ] \(mm/dd/yyyy) Work on writing code to select text on a webpage and highlight it. 
-    -  List of Evidence of Feature Completion
-        - Status: (Completed, Partially working, Incomplete, Pending)
-        - Direct Link: 
-        - Pull Requests
-
+        - Status: Completed
+        - Pull Requests/Commits
+            - https://github.com/rahulnshah/HACKNYU2022Highlighter-Bookmarker-/commit/b87b5bee1b407c81c049fbfc0ef74692d1405287
         - Screenshots
-
-        Image showing highlight feature working as intended
-
-        ![2022-02-26 (6)](https://user-images.githubusercontent.com/84089410/155856123-30100da6-2fd8-4ff8-acc2-f72c20d222db.png)
-
-        Images showing Chrome Extention has been created with icon image
-
-
-        ![2022-02-26 (5)](https://user-images.githubusercontent.com/84089410/155855264-4955ef4f-4ac4-48a0-8db6-0d91ee561638.png)
-
-        Second image showing chrome extention was created through a json file with a icon image
-
-
-        ![2022-02-26 (2)](https://user-images.githubusercontent.com/84089410/155855302-9ea1ba78-17d0-44af-9522-8094fc8fd77e.png)
-        
-  - [ ] \(mm/dd/yyyy) Save highlights, link them to their respective webpage, and save all of these highlights somewhere the user can find them. 
+          - ![image](https://user-images.githubusercontent.com/68120349/155863556-d53f0392-f3d9-4e77-ba3e-6d0f11c52f14.png)
+        - Image showing the landing page with a download button. 
+  - [x] \(02/25/2022) Work on writing code to select text on a webpage and highlight it. 
     -  List of Evidence of Feature Completion
-        - Status: (Completed, Partially working, Incomplete, Pending)
-        - Direct Link: 
+        - Status: Completed
         - Pull Requests
-        
-        Image showing bookmark feature
-
+          - https://github.com/rahulnshah/HACKNYU2022Highlighter-Bookmarker-/pull/2
+        - Screenshots
+          ![2022-02-26 (6)](https://user-images.githubusercontent.com/84089410/155856123-30100da6-2fd8-4ff8-acc2-f72c20d222db.png)
+        - Image showing highlight feature
+          ![2022-02-26 (5)](https://user-images.githubusercontent.com/84089410/155855264-4955ef4f-4ac4-48a0-8db6-0d91ee561638.png)
+        - Second image showing chrome extention was created through a json file with a icon image
+          ![2022-02-26 (2)](https://user-images.githubusercontent.com/84089410/155855302-9ea1ba78-17d0-44af-9522-8094fc8fd77e.png)
+        - Images showing Chrome Extention has been created with icon image 
+  - [x] \(02/26/2022) Save highlights, link them to their respective webpage, and save all of these highlights somewhere the user can find them. 
+    -  List of Evidence of Feature Completion
+        - Status: Completed
+        - Pull Requests
+          - https://github.com/rahulnshah/HACKNYU2022Highlighter-Bookmarker-/pull/3
+        - Screenshots
          ![image](https://user-images.githubusercontent.com/84089410/155861216-ea434837-af13-486a-9493-1e3d19584f44.png)   
+        - Image showing the higlights linked to specific webpage under "Your Highlights".
