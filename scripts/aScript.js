@@ -1,3 +1,18 @@
+const element = document.getElementById("myBtn");
+element.addEventListener("click", myFunction);
+function myFunction() {
+    const inputtx = document.getElementById("textboxid");
+    if(inputtx.value.length == 0)
+    {
+        alert("Input Box is empty");
+    }
+    else{
+        document.getElementById("demo").innerHTML = inputtx.value;
+    }
+}
+// function onCreated(node) {
+//   console.log(node);
+// }
 function showPopup(){      
   let flash = document.getElementById("myDiv");
 //let flashDiv = document.createElement("div");
@@ -10,6 +25,35 @@ function showPopup(){
   let saveButton = document.createElement("button");
   saveButton.innerHTML = "Save";
   saveButton.setAttribute('id','saveBtn');
+
+  //save button feature 
+  saveButton.addEventListener("click", function(){
+    //if url is not prvided, 
+      let urlStr = document.getElementById("urlbox");
+      if(urlStr.value.length > 0)
+      {
+        //create a bookmark, set the title as the highlighted text, and the url properties in a javascript object,
+        //using the bookmarks api
+        let i = this.previousSibling.innerText.indexOf('\n') + 1;
+        let highlightedText = this.previousSibling.innerText.substring(i);
+        //assumng highlighted text is < 60 chars getting error here
+        let anchTag = document.createElement("a");
+        anchTag.innerHTML = highlightedText;
+        anchTag.href = urlStr.value;
+        document.getElementById("highlights").appendChild(anchTag);
+        let linBreak = document.createElement("br");
+        document.getElementById("highlights").appendChild(linBreak);
+        this.parentNode.parentNode.removeChild(this.parentNode);
+        console.log("saved!");
+      }
+      else{
+        alert("provide url");
+      }
+  });
+
+
+
+
   let noButton = document.createElement("button");
   noButton.setAttribute('id','noBtn');
   noButton.addEventListener("click", function(){
