@@ -3,7 +3,7 @@
         "description": "Allows students to highlight and link their page to it!",
         "manifest_version": 3,
         "version": "1.0",
-        "browser_action": {
+        "action": {
           "default_popup": "popup.html", 
           "default_icon": "images/HackathonLogoV2.png" 
         },
