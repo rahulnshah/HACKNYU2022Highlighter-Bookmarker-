@@ -1,5 +1,5 @@
-# Project Name: Highlighter Chrome Extension 
-## Project Summary: Education Track - A free chrome extension that allows students to highlight on any web page and store the highlighted text on that web page for future reference. 
+# Project Name: Chrome Highlighter Extension 
+## Project Summary: Education Track - A free chrome extension that allows students to save their highlights on any web page. 
 ## Github Link: https://github.com/rahulnshah/HACKNYU2022Highlighter-Bookmarker-/tree/main
 ## Project Demo: https://www.youtube.com/watch?v=8BG7yfL8fzs
 ## Website Link: https://loving-heisenberg-616f8e.netlify.app/#
