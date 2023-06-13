@@ -10,7 +10,7 @@
         "content_scripts" : [
           {
             "matches" : ["https://*/*"],
-            "js" : ["contentScript.js"]
+            "js" : ["content.js"]
           }
         ],
         "action": {
