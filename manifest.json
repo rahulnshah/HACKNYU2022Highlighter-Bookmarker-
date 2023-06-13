@@ -1,15 +1,20 @@
 {
         "name": "Highlight it!",
         "description": "Allows students to highlight and link their page to it!",
-        "manifest_version": 2,
-        "version": "1.0",
-        "browser_action": {
+        "manifest_version": 3,
+        "version": "0.1.0",
+        "permissions" : ["tabs", "storage"],
+        "background" : {
+            "service_worker" : "background.js"
+        },
+        "content_scripts" : [
+          {
+            "matches" : ["https://*/*"],
+            "js" : ["content.js"]
+          }
+        ],
+        "action": {
           "default_popup": "popup.html", 
           "default_icon": "images/HackathonLogoV2.png" 
-        },
-        "icons": {
-          "16": "images/HackathonLogoV2.png",
-          "48": "images/HackathonLogoV2.png",
-          "128": "images/HackathonLogoV2.png"
         }
-    }
+}
