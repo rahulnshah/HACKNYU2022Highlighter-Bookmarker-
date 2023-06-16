@@ -3,14 +3,14 @@ import { getCurrentTab } from "./utils.js";
 function fetchHighlights(currentUrl)
 {
   chrome.storage.sync.get([currentUrl]).then((result) => {
-    if(result[currentUrl])
+    if (chrome.runtime.lastError) 
     {
-      let allHighlights = result[currentUrl];
-      viewHiglights(allHighlights);
+      alert("Please Try Again. Error occurred while fetching all highlights:", chrome.runtime.lastError);
     }
     else
     {
-      flash("You Have No Highlights");
+        let allHighlights = (result[currentUrl].length > 0) ? result[currentUrl] : ["You have no highlights"];
+        viewHiglights(allHighlights);
     }
   });
 }
@@ -27,7 +27,7 @@ function flash(highlight) {
   highlightsElement.appendChild(li);
 
   //add the Delete btn for each highlight
-  if(highlight !== "You Have No Highlights")
+  if(highlight !== "You have no highlights")
   {
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-btn");
@@ -55,23 +55,17 @@ function flash(highlight) {
 
 function viewHiglights(highlights)
 {
-  if(highlights.length > 0)
-  {
-    const highlightsElement = document.getElementById("highlightContainer");
-    highlightsElement.innerHTML = "";
+  const highlightsElement = document.getElementById("highlightContainer");
+  highlightsElement.innerHTML = "";
 
-    for(let highlight of highlights)
-    {
-      flash(highlight);
-    }
-  }
-  else
+  for(let highlight of highlights)
   {
-    flash("You Have No Highlights");
+    flash(highlight);
   }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+    
     const activeTab = await getCurrentTab();
     let pageUrl = activeTab.url;
     fetchHighlights(pageUrl);
