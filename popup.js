@@ -9,13 +9,13 @@ function fetchHighlights(currentUrl)
     }
     else
     {
-        let allHighlights = (result[currentUrl].length > 0) ? result[currentUrl] : ["You have no highlights"];
+        let allHighlights = (result[currentUrl] && result[currentUrl].length > 0) ? result[currentUrl] : ["You have no highlights"];
         viewHiglights(allHighlights);
     }
   });
 }
 
-function flash(highlight) {
+async function flash(highlight) {
   let highlightsElement = document.getElementById("highlightContainer");
   //create a div (or whatever wrapper we want)
   let li = document.createElement("LI");
