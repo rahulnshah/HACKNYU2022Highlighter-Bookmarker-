@@ -38,14 +38,24 @@ function Popup() {
         type: 'DELETE',
         myUrl: currentUrl,
         myHighlightedText: highlight,
+      },function(){
+        fetchHighlights();
       });
 
-      fetchHighlights();
     } catch (error) {
       console.error('Error occurred while deleting highlight:', error);
     }
   }
 
+  function renderDeleteButton(highlight) {
+    if (highlight !== 'You have no highlights') {
+      return (
+        <button className="delete-btn" onClick={() => handleDelete(highlight)}>
+          Delete
+        </button>
+      );
+    }
+  }
   return (
     <div>
       <h1>Highlights</h1>
@@ -53,11 +63,7 @@ function Popup() {
         {highlights.map((highlight, index) => (
           <li key={index}>
             {highlight}
-            {highlight !== 'You have no highlights' && (
-              <button className="delete-btn" onClick={() => handleDelete(highlight)}>
-                Delete
-              </button>
-            )}
+            {renderDeleteButton(highlight)}
           </li>
         ))}
       </ul>
