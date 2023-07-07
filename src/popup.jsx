@@ -1,7 +1,7 @@
 // popup.jsx
 
 import React, { useEffect, useState } from 'react';
-import { getCurrentTab } from './../utils.js';
+import { getCurrentTab } from './utils.js';
 import { render } from 'react-dom';
 
 function Popup() {
