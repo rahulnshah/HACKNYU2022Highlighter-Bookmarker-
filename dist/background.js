@@ -1,0 +1,1 @@
+chrome.tabs.onUpdated.addListener(((e,s,t)=>{if("complete"===s.status){const s=t.url;chrome.tabs.sendMessage(e,{type:"NEW",myUrl:s})}}));
