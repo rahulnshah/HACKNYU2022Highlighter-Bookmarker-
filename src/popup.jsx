@@ -6,11 +6,28 @@ import { render } from 'react-dom';
 
 function Popup() {
   const [highlights, setHighlights] = useState([]);
+  const [currentUrl, setCurrentUrl] = useState("");
 
   // run fetchHighlights() once during the initial rendering of the component
   useEffect(() => {
     fetchHighlights();
   }, []);
+
+  useEffect(() => {
+    fetchCurrentUrl();
+  }, []);
+
+  async function fetchCurrentUrl()
+  {
+    try {
+      const activeTab = await getCurrentTab();
+      setCurrentUrl(activeTab.url);
+    }
+    catch(error)
+    {
+      console.error('Error occurred while fetching the current page url:', error);
+    }
+  }
 
   async function fetchHighlights() {
     try {
@@ -38,7 +55,7 @@ function Popup() {
         type: 'DELETE',
         myUrl: currentUrl,
         myHighlightedText: highlight,
-      },function(){
+      }, function () {
         fetchHighlights();
       });
 
@@ -47,23 +64,50 @@ function Popup() {
     }
   }
 
-  function renderDeleteButton(highlight) {
+  function copyHighlight(highlight)
+  {
+    let linkElement = document.getElementById(highlight);
+    const linkText = linkElement.innerText;
+    navigator.clipboard.writeText(linkText)
+    .then(() => {
+      let copyBtn = linkElement.nextElementSibling.nextElementSibling;
+      copyBtn.innerText = "Copied!";
+      setTimeout(() => copyBtn.innerText = "Copy", 3000);
+    })
+    .catch((error) => {
+      console.error('Failed to copy text to clipboard:', error);
+    });
+  }
+  function renderDeleteAndCopyBtns(highlight) {
     if (highlight !== 'You have no highlights') {
       return (
-        <button className="delete-btn" onClick={() => handleDelete(highlight)}>
+        <><button onClick={() => {
+          handleDelete(highlight);
+        } }>
           Delete
-        </button>
+        </button><button onClick={() => {
+          copyHighlight(highlight);
+        }}>Copy</button></>
       );
     }
+  }
+
+  function renderHighlight(highlight)
+  {
+    if(highlight !== 'You have no highlights')
+    {
+      return (<a id={highlight} href={currentUrl}>{highlight}</a>);
+    }
+    return highlight;
   }
   return (
     <div>
       <h1>Highlights</h1>
       <ul id="highlightContainer">
-        {highlights.map((highlight, index) => (
-          <li key={index}>
-            {highlight}
-            {renderDeleteButton(highlight)}
+        {highlights.map((highlight) => (
+          <li>
+            {renderHighlight(highlight)}
+            {renderDeleteAndCopyBtns(highlight)}
           </li>
         ))}
       </ul>
