@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { getCurrentTab } from './utils.js';
 import { render } from 'react-dom';
+import './styles/stylesheet.css';
 
 function Popup() {
   const [highlights, setHighlights] = useState([]);

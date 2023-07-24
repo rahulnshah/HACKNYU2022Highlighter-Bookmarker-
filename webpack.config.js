@@ -13,25 +13,31 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.(js|jsx)$/, 
+      {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-            loader: "babel-loader",
-            options: {
-              presets: ['@babel/preset-env', '@babel/preset-react']
-            }
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
         }
-    }
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+        exclude: /node_modules/,
+      },
     ]
   },
   plugins: [new HtmlWebpackPlugin({
-    template : "./src/popup.html",
-    filename : "popup.html"
+    template: "./src/popup.html",
+    filename: "popup.html"
   }),
-    new CopyPlugin({
-      patterns: [
-        { from: "public"}
-      ],
-    }),
+  new CopyPlugin({
+    patterns: [
+      { from: "public" }
+    ],
+  }),
   ],
 };
