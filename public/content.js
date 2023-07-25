@@ -3,7 +3,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   try
   {
     const {type, myUrl} = message;
-    // console.log("url", myUrl);
     if(type === "NEW")
     {
       document.addEventListener("mouseup", function highlightIt() {
