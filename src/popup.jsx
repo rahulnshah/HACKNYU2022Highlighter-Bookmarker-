@@ -67,11 +67,11 @@ function Popup() {
 
   function copyHighlight(highlight)
   {
-    let linkElement = document.getElementById(highlight);
-    const linkText = linkElement.innerText;
-    navigator.clipboard.writeText(linkText)
+    let paragraph = document.getElementById(highlight);
+    const paragraphText = paragraph.innerText;
+    navigator.clipboard.writeText(paragraphText)
     .then(() => {
-      let copyBtn = linkElement.nextElementSibling.nextElementSibling;
+      let copyBtn = document.querySelector(".copy-button");
       copyBtn.innerText = "Copied!";
       setTimeout(() => copyBtn.innerText = "Copy", 3000);
     })
@@ -82,13 +82,14 @@ function Popup() {
   function renderDeleteAndCopyBtns(highlight) {
     if (highlight !== 'You have no highlights') {
       return (
-        <><button onClick={() => {
-          handleDelete(highlight);
-        } }>
-          Delete
-        </button><button onClick={() => {
-          copyHighlight(highlight);
-        }}>Copy</button></>
+          <div class="buttons-container">
+            <button class="delete-button" onClick={() => {
+              handleDelete(highlight);
+            }}>Delete</button>
+            <button class="copy-button" onClick={() => {
+              copyHighlight(highlight);
+            }}>Copy</button>
+          </div>
       );
     }
   }
@@ -97,22 +98,19 @@ function Popup() {
   {
     if(highlight !== 'You have no highlights')
     {
-      return (<a id={highlight} href={currentUrl}>{highlight}</a>);
+      return (<p class="scrollable" id={highlight}>"{highlight}"</p>);
     }
-    return highlight;
+    return (<p>{highlight}</p>);
   }
   return (
-    <div>
-      <h1>Highlights</h1>
-      <ul id="highlightContainer">
+      <>
         {highlights.map((highlight) => (
-          <li>
+          <div class="note-card">
             {renderHighlight(highlight)}
             {renderDeleteAndCopyBtns(highlight)}
-          </li>
+          </div>
         ))}
-      </ul>
-    </div>
+      </>
   );
 }
 

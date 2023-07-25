@@ -1,23 +1,62 @@
-li {
-  height: 50px; 
-  width: 250px;
-  border: 1px solid blue;
-  padding: 10px;
+body {
   display: flex;
+  justify-content: center;
   align-items: center;
-  border-radius: 50px;
-  margin-bottom: 10px; /* Add margin-bottom for spacing */
+  height: 100vh;
+  margin: 0;
+}
+.note-card:hover {
+  background-color: black;
+  color: white;
 }
 
-li a {
-  flex-grow: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.note-card {
+  position: relative;
+  width: 300px;
+  height: 120px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  overflow: hidden; /* Add overflow: hidden to clip the content */
+}
+
+.note-card p {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden; /* Add overflow: hidden to clip the content */
+}
+
+.note-card p.scrollable {
+  overflow-y: auto; /* Add vertical scrolling when needed */
+  max-height: 100px; /* Set a max height to limit the expansion */
+  font-family: "Courier New", monospace;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.buttons-container {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  display: flex;
 }
 
 button {
-  margin-right: 10px;
   padding: 5px 10px;
-  border-radius: 50px;
+  border-radius: 4px;
+  margin-right: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: #ff5a5a;
+  color: #fff;
+}
+
+.copy-button {
+  background-color: #00aaff;
+  color: #fff;
 }
