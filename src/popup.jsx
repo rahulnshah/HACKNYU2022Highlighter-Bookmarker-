@@ -71,7 +71,7 @@ function Popup() {
     const paragraphText = paragraph.innerText;
     navigator.clipboard.writeText(paragraphText)
     .then(() => {
-      let copyBtn = document.querySelector(".copy-button");
+      let copyBtn = paragraph.nextElementSibling.querySelector(".copy-button");
       copyBtn.innerText = "Copied!";
       setTimeout(() => copyBtn.innerText = "Copy", 3000);
     })
@@ -100,7 +100,7 @@ function Popup() {
     {
       return (<p class="scrollable" id={highlight}>"{highlight}"</p>);
     }
-    return (<p>{highlight}</p>);
+    return (<p class="fallback-message">{highlight}</p>);
   }
   return (
       <>

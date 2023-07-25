@@ -22,10 +22,17 @@ body {
   overflow: hidden; /* Add overflow: hidden to clip the content */
 }
 
+.fallback-message {
+  font-family: "Courier New", monospace;
+  text-align: center;
+  font-size: 20px;
+}
+
 .note-card p {
   margin: 0;
   font-family: Arial, sans-serif;
   overflow: hidden; /* Add overflow: hidden to clip the content */
+  font-size: 18px;
 }
 
 .note-card p.scrollable {
