@@ -9,16 +9,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         const selection = window.getSelection();
         // Get the selected text
         let highlightedText = selection.toString();
-        /*
-        const range = selection.getRangeAt(0);
-        const span = document.createElement("span");
-        span.style.backgroundColor = "yellow";
-        range.surroundContents(span);
-        */
       
         // add the highlighted text to the value (which is an array of unique elements) for that url
         if(highlightedText.length > 0)
         {
+          const range = selection.getRangeAt(0);
+          const span = document.createElement("span");
+          span.style.backgroundColor = "yellow";
+          range.surroundContents(span);
+          setTimeout(() => {span.style.backgroundColor = "";}, 3000);
           // run the get query 
           chrome.storage.sync.get([myUrl]).then((result) => {
             if (chrome.runtime.lastError) 
@@ -53,17 +52,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             }
           });
         }
-        else
-        {
-          alert("Please highlight something first!");
-        }
       });
-
-      document.addEventListener("mousedown", function() {
-        console.log("mouse down!");
-      });
-
-      
     }
     else if(type === "DELETE")
     {
