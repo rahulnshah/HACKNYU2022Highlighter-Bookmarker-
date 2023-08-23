@@ -7,6 +7,9 @@
         "background" : {
             "service_worker" : "background.js"
         },
+        "icons": {
+          "16": "images/HackathonLogoV2.png"
+        },
         "content_scripts" : [
           {
             "matches" : ["https://*/*"],
