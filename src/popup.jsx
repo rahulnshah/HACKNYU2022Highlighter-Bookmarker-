@@ -7,33 +7,19 @@ import './styles/stylesheet.css';
 
 function Popup() {
   const [highlights, setHighlights] = useState([]);
-  const [currentUrl, setCurrentUrl] = useState("");
 
   // run fetchHighlights() once during the initial rendering of the component
   useEffect(() => {
     fetchHighlights();
   }, []);
 
-  useEffect(() => {
-    fetchCurrentUrl();
-  }, []);
-
-  async function fetchCurrentUrl()
-  {
-    try {
-      const activeTab = await getCurrentTab();
-      setCurrentUrl(activeTab.url);
-    }
-    catch(error)
-    {
-      console.error('Error occurred while fetching the current page url:', error);
-    }
-  }
+  
 
   async function fetchHighlights() {
+    
     try {
-      const activeTab = await getCurrentTab();
-      const currentUrl = activeTab.url;
+      const currentTab = await getCurrentTab();
+      const currentUrl = currentTab.url;
       chrome.storage.sync.get([currentUrl], (result) => {
         if (chrome.runtime.lastError) {
           alert('Please Try Again. Error occurred while fetching all highlights:', chrome.runtime.lastError);
@@ -49,15 +35,12 @@ function Popup() {
 
   async function handleDelete(highlight) {
     try {
-      const activeTab = await getCurrentTab();
-      const currentUrl = activeTab.url;
-
-      chrome.tabs.sendMessage(activeTab.id, {
+      const currentTab = await getCurrentTab();
+      const currentUrl = currentTab.url;
+      chrome.tabs.sendMessage(currentTab.id, {
         type: 'DELETE',
         myUrl: currentUrl,
         myHighlightedText: highlight,
-      }, function () {
-        fetchHighlights();
       });
 
     } catch (error) {
