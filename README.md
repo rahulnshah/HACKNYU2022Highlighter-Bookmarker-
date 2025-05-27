@@ -4,7 +4,6 @@
 ## Project Demo: https://www.youtube.com/watch?v=8BG7yfL8fzs
 ## Website Link: https://loving-heisenberg-616f8e.netlify.app/#
 ## Team: Rahul Shah, Alexander Fischer, Laura Lourenco, Chelsea DeCambre
-(portfolio project)
 <!--
 ### Line item / Feature template (use this for each bullet point)
 #### Don't delete this
