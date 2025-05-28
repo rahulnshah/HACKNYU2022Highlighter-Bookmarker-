@@ -1,51 +1,52 @@
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  try
-  {
-    const {type, myUrl} = message;
-    if(type === "NEW")
-    {
+  try {
+    const { type, myUrl } = message;
+    if (type === "NEW") {
       document.addEventListener("mouseup", function highlightIt() {
         const selection = window.getSelection();
         // Get the selected text
         let highlightedText = selection.toString();
-      
+
         // add the highlighted text to the value (which is an array of unique elements) for that url
-        if(highlightedText.length > 0)
-        {
+        if (highlightedText.length > 0) {
           const range = selection.getRangeAt(0);
           const span = document.createElement("span");
           span.style.backgroundColor = "yellow";
           range.surroundContents(span);
-          setTimeout(() => {span.style.backgroundColor = "";}, 3000);
-          // run the get query 
+          setTimeout(() => {
+            span.style.backgroundColor = "";
+          }, 3000);
+          // run the get query
           chrome.storage.sync.get([myUrl]).then((result) => {
-            if (chrome.runtime.lastError) 
-            {
-              alert("Please Try Again. Error occurred:", chrome.runtime.lastError);
-            } 
-            else 
-            {
+            if (chrome.runtime.lastError) {
+              alert(
+                "Please Try Again. Error occurred:",
+                chrome.runtime.lastError
+              );
+            } else {
               // url is in array so push the highlisghted text inside it and reset the value of the url
               let existingHighlights = result[myUrl] || [];
-              let existingHighlight = existingHighlights.find(val => val === highlightedText);
-              if(existingHighlight)
-              {
-                alert(`The hightlight ${highlightedText} has been highlighted!`);
-              }
-              else
-              {
+              let existingHighlight = existingHighlights.find(
+                (val) => val === highlightedText
+              );
+              if (existingHighlight) {
+                alert(
+                  `The hightlight ${highlightedText} has been highlighted!`
+                );
+              } else {
                 existingHighlights.push(highlightedText);
                 const storageObject = {};
                 storageObject[myUrl] = existingHighlights;
                 chrome.storage.sync.set(storageObject).then(() => {
-                  if (chrome.runtime.lastError) 
-                  {
-                    alert("Please Try Again. Error occurred:", chrome.runtime.lastError);
-                  }
-                  else
-                  {
-                    alert(`The highlight \'${highlightedText}\' has been saved!`);
+                  if (chrome.runtime.lastError) {
+                    alert(
+                      "Please Try Again. Error occurred:",
+                      chrome.runtime.lastError
+                    );
+                  } else {
+                    alert(
+                      `The highlight \'${highlightedText}\' has been saved!`
+                    );
                   }
                 });
               }
@@ -53,42 +54,36 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           });
         }
       });
-    }
-    else if(type === "DELETE")
-    {
+    } else if (type === "DELETE") {
       let { myHighlightedText } = message;
       // get the existing highlights and remove the highlighted text that u passed
       chrome.storage.sync.get([myUrl]).then((result) => {
-        if (chrome.runtime.lastError) 
-        {
+        if (chrome.runtime.lastError) {
           alert("Please Try Again. Error occurred:", chrome.runtime.lastError);
-        }
-        else
-        {
+        } else {
           let existingHighlights = result[myUrl];
-          existingHighlights = existingHighlights.filter(val => val !== myHighlightedText);
+          existingHighlights = existingHighlights.filter(
+            (val) => val !== myHighlightedText
+          );
           // push the modified array into chrome.storage.sync
           const storageObject = {};
           storageObject[myUrl] = existingHighlights;
           chrome.storage.sync.set(storageObject).then(() => {
-            if (chrome.runtime.lastError) 
-            {
-              alert("Please Try Again. Error occurred:", chrome.runtime.lastError);
-            }
-            else{
+            if (chrome.runtime.lastError) {
+              alert(
+                "Please Try Again. Error occurred:",
+                chrome.runtime.lastError
+              );
+            } else {
               alert(`The highlight ${myHighlightedText} has been deleted!`);
               sendResponse(existingHighlights);
             }
           });
         }
-      });    
+      });
     }
-    return true;
+  } catch (error) {
+    console.error("Error occurred while fetching highlights:", error);
   }
-  catch(error)
-  {
-    console.error('Error occurred while fetching highlights:', error);
-    return false;
-  }
-}
-);
+  return true;
+});
