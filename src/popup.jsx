@@ -39,9 +39,9 @@ function Popup() {
     }
   }
 
-  function copyHighlight(highlight)
+  function copyHighlight(index)
   {
-    let paragraph = document.getElementById(highlight);
+    let paragraph = document.querySelector(`.note-card:nth-child(${index + 1}) .scrollable`);
     const paragraphText = paragraph.innerText;
     navigator.clipboard.writeText(paragraphText)
     .then(() => {
@@ -56,15 +56,15 @@ function Popup() {
   return (
       <>
       {showFallbackMessage && <h1 class="fallback-message">You have no highlights for this page. Start highlighting to see them here!</h1>}
-        {highlights.map((highlight) => (
-          <div class="note-card">
-            <p class="scrollable" id={highlight}>"{highlight}"</p>
+        {highlights.map((highlight, index) => (
+          <div class="note-card" key={index}>
+            <p class="scrollable">"{highlight}"</p>
             <div class="buttons-container">
               <button class="delete-button" onClick={() => {
                 handleDelete(highlight);
               }}>Delete</button>
               <button class="copy-button" onClick={() => {
-                copyHighlight(highlight);
+                copyHighlight(index);
               }}>Copy</button>
           </div>
           </div>
