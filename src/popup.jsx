@@ -1,48 +1,38 @@
 // popup.jsx
 
 import React, { useEffect, useState } from 'react';
-import { getCurrentTab } from './utils.js';
 import { render } from 'react-dom';
 import './styles/stylesheet.css';
 
 function Popup() {
   const [highlights, setHighlights] = useState([]);
-
+  const [showFallbackMessage, setShowFallbackMessage] = useState(false);
   // run fetchHighlights() once during the initial rendering of the component
   useEffect(() => {
     fetchHighlights();
-  }, []);
+  }, [highlights]);
 
   
 
   async function fetchHighlights() {
-    
     try {
-      const currentTab = await getCurrentTab();
-      const currentUrl = currentTab.url;
-      chrome.storage.sync.get([currentUrl], (result) => {
-        if (chrome.runtime.lastError) {
-          alert('Please Try Again. Error occurred while fetching all highlights:', chrome.runtime.lastError);
-        } else {
-          const allHighlights = result[currentUrl]?.length > 0 ? result[currentUrl] : ['You have no highlights'];
-          setHighlights(allHighlights);
-        }
-      });
+      const response = await chrome.runtime.sendMessage({ type: "FETCH_HIGHLIGHTS" });
+      console.log("Response received in popup.jsx after fetching highlights:", response);
+      setHighlights(response.highlights);
+      if(response.highlights.length === 0){
+        setShowFallbackMessage(true);
+      }
     } catch (error) {
       console.error('Error occurred while fetching highlights:', error);
     }
   }
 
   async function handleDelete(highlight) {
-    try {
-      const currentTab = await getCurrentTab();
-      const currentUrl = currentTab.url;
-      chrome.tabs.sendMessage(currentTab.id, {
-        type: 'DELETE',
-        myUrl: currentUrl,
-        myHighlightedText: highlight,
+    try {  
+      const response = await chrome.runtime.sendMessage({
+        type: "DELETE_HIGHLIGHT",
+        highlightedText: highlight,
       });
-
     } catch (error) {
       console.error('Error occurred while deleting highlight:', error);
     }
@@ -62,35 +52,20 @@ function Popup() {
       console.error('Failed to copy text to clipboard:', error);
     });
   }
-  function renderDeleteAndCopyBtns(highlight) {
-    if (highlight !== 'You have no highlights') {
-      return (
-          <div class="buttons-container">
-            <button class="delete-button" onClick={() => {
-              handleDelete(highlight);
-            }}>Delete</button>
-            <button class="copy-button" onClick={() => {
-              copyHighlight(highlight);
-            }}>Copy</button>
-          </div>
-      );
-    }
-  }
-
-  function renderHighlight(highlight)
-  {
-    if(highlight !== 'You have no highlights')
-    {
-      return (<p class="scrollable" id={highlight}>"{highlight}"</p>);
-    }
-    return (<p class="fallback-message">{highlight}</p>);
-  }
   return (
       <>
+      {showFallbackMessage && <p class="fallback-message">You have no highlights for this page. Start highlighting to see them here!</p>}
         {highlights.map((highlight) => (
           <div class="note-card">
-            {renderHighlight(highlight)}
-            {renderDeleteAndCopyBtns(highlight)}
+            <p class="scrollable" id={highlight}>"{highlight}"</p>
+            <div class="buttons-container">
+              <button class="delete-button" onClick={() => {
+                handleDelete(highlight);
+              }}>Delete</button>
+              <button class="copy-button" onClick={() => {
+                copyHighlight(highlight);
+              }}>Copy</button>
+          </div>
           </div>
         ))}
       </>

@@ -2,17 +2,18 @@
         "name": "Highlight it!",
         "description": "Allows students to highlight and link their page to it!",
         "manifest_version": 3,
-        "version": "0.1.0",
-        "permissions" : ["tabs", "storage"],
+        "version": "1.0",
+        "permissions" : ["activeTab", "storage"],
         "background" : {
-            "service_worker" : "background.js"
+            "service_worker" : "background.js",
+            "type": "module"
         },
         "icons": {
           "16": "images/HackathonLogoV2.png"
         },
         "content_scripts" : [
           {
-            "matches" : ["https://*/*"],
+            "matches": ["https://*.edu/*"],
             "js" : ["content.js"]
           }
         ],
