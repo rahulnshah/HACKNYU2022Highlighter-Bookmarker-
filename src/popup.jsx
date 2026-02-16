@@ -55,7 +55,7 @@ function Popup() {
   }
   return (
       <>
-      {showFallbackMessage && <p class="fallback-message">You have no highlights for this page. Start highlighting to see them here!</p>}
+      {showFallbackMessage && <h1 class="fallback-message">You have no highlights for this page. Start highlighting to see them here!</h1>}
         {highlights.map((highlight) => (
           <div class="note-card">
             <p class="scrollable" id={highlight}>"{highlight}"</p>
