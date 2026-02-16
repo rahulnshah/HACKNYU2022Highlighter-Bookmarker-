@@ -10,7 +10,7 @@ function Popup() {
   // run fetchHighlights() once during the initial rendering of the component
   useEffect(() => {
     fetchHighlights();
-  }, [highlights]);
+  }, []);
 
   
 
@@ -33,6 +33,7 @@ function Popup() {
         type: "DELETE_HIGHLIGHT",
         highlightedText: highlight,
       });
+      fetchHighlights();
     } catch (error) {
       console.error('Error occurred while deleting highlight:', error);
     }
