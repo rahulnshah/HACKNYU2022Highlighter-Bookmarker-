@@ -35,10 +35,3 @@
     style.textContent = "";
   });
 })();
-
-/*
-chrome.tabs.sendMessage(tabId, {
-      type: "NEW",
-      myUrl: siteUrl,
-    });
-*/
