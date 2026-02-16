@@ -20,7 +20,7 @@ body {
   overflow: hidden; /* Add overflow: hidden to clip the content */
 }
 
-.note-card p.fallback-message {
+h1.fallback-message {
   font-family: "Courier New", monospace;
   text-align: center;
   font-size: 20px;
