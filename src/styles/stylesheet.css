@@ -78,3 +78,10 @@ button {
   margin-bottom: 10px;
   resize: vertical; /* optional: allow user to resize */
 }
+
+.note-card p.scrollable {
+  overflow-y: auto;
+  max-height: 60px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
