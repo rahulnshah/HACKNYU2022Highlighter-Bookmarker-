@@ -27,11 +27,11 @@ function Popup() {
     }
   }
 
-  async function handleDelete(highlight) {
+  async function handleDelete(highlightedText) {
     try {  
       const response = await chrome.runtime.sendMessage({
         type: "DELETE_HIGHLIGHT",
-        highlightedText: highlight,
+        highlightedText
       });
       fetchHighlights();
     } catch (error) {
@@ -41,11 +41,13 @@ function Popup() {
 
   function copyHighlight(index)
   {
-    let paragraph = document.querySelector(`.note-card:nth-child(${index + 1}) .scrollable`);
+    let paragraph = document.querySelector(`#note-card-${index}`).getElementsByClassName("scrollable")[0];
     const paragraphText = paragraph.innerText;
+    console.log(`Copying text: ${paragraphText}`);
     navigator.clipboard.writeText(paragraphText)
     .then(() => {
-      let copyBtn = paragraph.nextElementSibling.querySelector(".copy-button");
+      let cardElelment = document.getElementById(`note-card-${index}`);
+      let copyBtn = cardElelment.querySelector('.copy-button');
       copyBtn.innerText = "Copied!";
       setTimeout(() => copyBtn.innerText = "Copy", 3000);
     })
@@ -57,13 +59,14 @@ function Popup() {
       <>
       {showFallbackMessage && <h1 class="fallback-message">You have no highlights for this page. Start highlighting to see them here!</h1>}
         {highlights.map((highlight, index) => (
-          <div class="note-card" key={index}>
-            <p class="scrollable">"{highlight}"</p>
+          <div id={`note-card-${index}`} class={`note-card`} key={index}>
+            <p class="scrollable">"{highlight.highlightedText}"</p>
+            <p class="date">Created on: {highlight.dateCreated}</p>
             <div class="buttons-container">
               <button class="delete-button" onClick={() => {
-                handleDelete(highlight);
+                handleDelete(highlight.highlightedText);
               }}>Delete</button>
-              <button class="copy-button" onClick={() => {
+              <button class={`copy-button`} onClick={() => {
                 copyHighlight(index);
               }}>Copy</button>
           </div>
