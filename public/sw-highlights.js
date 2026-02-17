@@ -12,19 +12,25 @@ const handleFetchHighlights = async (sendResponse) => {
   }
 };
 
-const handleSaveHighlight = async (highlightedText, sendResponse) => {
+const handleSaveHighlight = async (
+  highlightedText,
+  dateCreated,
+  sendResponse,
+) => {
   console.log("Entered save highlight block in background.js");
   if (highlightedText.length > 0) {
     const currentTab = await getCurrentTab();
     const myUrl = currentTab.url;
     const data = await chrome.storage.sync.get(myUrl);
     if (data[myUrl] === undefined) {
-      await chrome.storage.sync.set({ [myUrl]: [highlightedText] });
+      await chrome.storage.sync.set({
+        [myUrl]: [{ highlightedText, dateCreated }],
+      });
       console.log(
         "No highlights found for this URL. Creating new entry in storage.",
       );
     } else {
-      const newHighlights = [...data[myUrl], highlightedText];
+      const newHighlights = [...data[myUrl], { highlightedText, dateCreated }];
       await chrome.storage.sync.set({ [myUrl]: newHighlights });
       console.log(
         "Existing highlights found for this URL. Appending new highlight to storage.",
@@ -52,7 +58,7 @@ const handleDeleteHighlight = async (highlightedText, sendResponse) => {
   } else {
     const copyOfHighlights = [...data[myUrl]];
     const newHighlights = copyOfHighlights.filter(
-      (val) => val !== highlightedText,
+      (highlight) => highlight.highlightedText !== highlightedText,
     );
     await chrome.storage.sync.set({ [myUrl]: newHighlights });
     console.log(
@@ -66,11 +72,6 @@ const handleDeleteHighlight = async (highlightedText, sendResponse) => {
   });
 };
 
-const getCurrentTabUrl = async () => {
-  const currentTab = await getCurrentTab();
-  const url = currentTab.url;
-  return url;
-};
 function handleMessages(message, sender, sendResponse) {
   try {
     const { type, highlightedText } = message;
@@ -78,7 +79,8 @@ function handleMessages(message, sender, sendResponse) {
       console.log("Entered fetch highlights block in background.js");
       handleFetchHighlights(sendResponse);
     } else if (type === "SAVE_HIGHLIGHT") {
-      handleSaveHighlight(highlightedText, sendResponse);
+      const { dateCreated } = message;
+      handleSaveHighlight(highlightedText, dateCreated, sendResponse);
     } else if (type === "DELETE_HIGHLIGHT") {
       handleDeleteHighlight(highlightedText, sendResponse);
     }

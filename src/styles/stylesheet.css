@@ -42,6 +42,13 @@ h1.fallback-message {
   font-weight: bold;
 }
 
+.note-card p.date {
+  font-size: 14px;
+  font-family: "Courier New", monospace;
+  font-style: italic;
+  margin-top: 10px;
+}
+
 .buttons-container {
   position: absolute;
   bottom: 10px;

@@ -26,6 +26,15 @@
         const payload = {
           type: "SAVE_HIGHLIGHT",
           highlightedText: selectedText,
+          // Get the current date in YYYY-MM-DD format anf time in HH:MM pm am format
+          dateCreated: new Date().toLocaleString("en-US", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+          }),
         };
         const response = await chrome.runtime.sendMessage(payload);
         console.log(payload);
