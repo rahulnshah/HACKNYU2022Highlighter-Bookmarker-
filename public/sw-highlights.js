@@ -15,6 +15,7 @@ const handleFetchHighlights = async (sendResponse) => {
 const handleSaveHighlight = async (
   highlightedText,
   dateCreated,
+  note,
   sendResponse,
 ) => {
   console.log("Entered save highlight block in background.js");
@@ -24,13 +25,16 @@ const handleSaveHighlight = async (
     const data = await chrome.storage.sync.get(myUrl);
     if (data[myUrl] === undefined) {
       await chrome.storage.sync.set({
-        [myUrl]: [{ highlightedText, dateCreated }],
+        [myUrl]: [{ highlightedText, dateCreated, note }],
       });
       console.log(
         "No highlights found for this URL. Creating new entry in storage.",
       );
     } else {
-      const newHighlights = [...data[myUrl], { highlightedText, dateCreated }];
+      const newHighlights = [
+        ...data[myUrl],
+        { highlightedText, dateCreated, note },
+      ];
       await chrome.storage.sync.set({ [myUrl]: newHighlights });
       console.log(
         "Existing highlights found for this URL. Appending new highlight to storage.",
@@ -72,6 +76,36 @@ const handleDeleteHighlight = async (highlightedText, sendResponse) => {
   });
 };
 
+const handleSaveNote = async (highlightedText, note, sendResponse) => {
+  const currentTab = await getCurrentTab();
+  const myUrl = currentTab.url;
+  const data = await chrome.storage.sync.get(myUrl);
+  if (data[myUrl] === undefined) {
+    sendResponse({
+      success: false,
+      message: "No highlights found for this URL!",
+    });
+  } else {
+    const copyOfHighlights = [...data[myUrl]];
+    const newHighlights = copyOfHighlights.map((highlight) => {
+      if (highlight.highlightedText === highlightedText) {
+        return { ...highlight, note: note };
+      } else {
+        return highlight;
+      }
+    });
+    await chrome.storage.sync.set({ [myUrl]: newHighlights });
+    console.log(
+      "Existing highlights found for this URL. Saving note to storage.",
+      newHighlights,
+    );
+    sendResponse({
+      success: true,
+      message: "Note saved successfully!",
+    });
+  }
+};
+
 function handleMessages(message, sender, sendResponse) {
   try {
     const { type, highlightedText } = message;
@@ -80,9 +114,13 @@ function handleMessages(message, sender, sendResponse) {
       handleFetchHighlights(sendResponse);
     } else if (type === "SAVE_HIGHLIGHT") {
       const { dateCreated } = message;
-      handleSaveHighlight(highlightedText, dateCreated, sendResponse);
+      const { note } = message;
+      handleSaveHighlight(highlightedText, dateCreated, note, sendResponse);
     } else if (type === "DELETE_HIGHLIGHT") {
       handleDeleteHighlight(highlightedText, sendResponse);
+    } else if (type === "SAVE_NOTE") {
+      const { note } = message;
+      handleSaveNote(highlightedText, note, sendResponse);
     }
   } catch (error) {
     console.error("Error in handling messages in background.js:", error);

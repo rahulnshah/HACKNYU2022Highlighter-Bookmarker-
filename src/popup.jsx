@@ -4,28 +4,24 @@ import React, { useEffect, useState } from 'react';
 import { render } from 'react-dom';
 import './styles/stylesheet.css';
 
-function Popup() {
-  const [highlights, setHighlights] = useState([]);
-  const [showFallbackMessage, setShowFallbackMessage] = useState(false);
-  // run fetchHighlights() once during the initial rendering of the component
-  useEffect(() => {
-    fetchHighlights();
-  }, []);
+function HighlightCard({highlight, index, refreshHighlights}) {
 
-  
+  const [note, setNote] = useState("");
 
-  async function fetchHighlights() {
-    try {
-      const response = await chrome.runtime.sendMessage({ type: "FETCH_HIGHLIGHTS" });
-      console.log("Response received in popup.jsx after fetching highlights:", response);
-      setHighlights(response.highlights);
-      if(response.highlights.length === 0){
-        setShowFallbackMessage(true);
-      }
-    } catch (error) {
-      console.error('Error occurred while fetching highlights:', error);
+  async function handleEditNote(highlightedText, note) {
+      try{
+            // save note to backend
+            const response = await chrome.runtime.sendMessage({
+              type: "SAVE_NOTE",
+              highlightedText,
+              note
+            });
+            refreshHighlights();
+          }
+        catch(error){
+          console.error('Error occurred while saving note:', error);
+        }
     }
-  }
 
   async function handleDelete(highlightedText) {
     try {  
@@ -33,7 +29,7 @@ function Popup() {
         type: "DELETE_HIGHLIGHT",
         highlightedText
       });
-      fetchHighlights();
+      refreshHighlights();
     } catch (error) {
       console.error('Error occurred while deleting highlight:', error);
     }
@@ -55,22 +51,58 @@ function Popup() {
       console.error('Failed to copy text to clipboard:', error);
     });
   }
+
+  useEffect(() => {
+    setNote(highlight.note);
+  }, [highlight.note]);
+
   return (
-      <>
-      {showFallbackMessage && <h1 class="fallback-message">You have no highlights for this page. Start highlighting to see them here!</h1>}
-        {highlights.map((highlight, index) => (
-          <div id={`note-card-${index}`} class={`note-card`} key={index}>
-            <p class="scrollable">"{highlight.highlightedText}"</p>
-            <p class="date">Created on: {highlight.dateCreated}</p>
-            <div class="buttons-container">
-              <button class="delete-button" onClick={() => {
+    <div id={`note-card-${index}`} className={`note-card`} key={index}>
+            <p className="scrollable">"{highlight.highlightedText}"</p>
+            <p className="date">Created on: {highlight.dateCreated}</p>
+            <textarea className="note-input" placeholder="Add a note to this highlight..." value={note} onChange={(e) => setNote(e.target.value)}></textarea>
+            <div className="buttons-container">
+              <button className="delete-button" onClick={() => {
                 handleDelete(highlight.highlightedText);
               }}>Delete</button>
-              <button class={`copy-button`} onClick={() => {
+              <button className={`copy-button`} onClick={() => {
                 copyHighlight(index);
               }}>Copy</button>
+              <button className="save-note-button" onClick={() => {
+            handleEditNote(highlight.highlightedText, note);
+              }}>Save Note</button>
           </div>
           </div>
+  );
+}
+
+function Popup() {
+  const [highlights, setHighlights] = useState([]);
+  const [showFallbackMessage, setShowFallbackMessage] = useState(false);
+
+  async function fetchHighlights() {
+    try {
+      const response = await chrome.runtime.sendMessage({ type: "FETCH_HIGHLIGHTS" });
+      console.log("Response received in popup.jsx after fetching highlights:", response);
+      setHighlights(response.highlights);
+      if(response.highlights.length === 0){
+        setShowFallbackMessage(true);
+      }
+    } catch (error) {
+      console.error('Error occurred while fetching highlights:', error);
+    }
+  }
+  // run fetchHighlights() once during the initial rendering of the component
+  useEffect(() => {
+    fetchHighlights();
+  }, []);
+
+
+  return (
+      <>
+      {showFallbackMessage && <h1 className="fallback-message">You have no highlights for this page. Start highlighting to see them here!</h1>}
+        {highlights.map((highlight, index) => (
+          <HighlightCard highlight={highlight} index={index} key={index} refreshHighlights={fetchHighlights}/>
         ))}
       </>
   );

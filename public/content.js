@@ -35,6 +35,7 @@
             minute: "2-digit",
             hour12: true,
           }),
+          note: "", // default note value when creating a new highlight, can be updated later by user
         };
         const response = await chrome.runtime.sendMessage(payload);
         console.log(payload);
